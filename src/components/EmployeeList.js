@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; // Importation de React et des hooks useState et useEffect pour recup données et effets de bord
 
 const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
-
+  const [employees, setEmployees] = useState([]); // État pour stocker la liste des employés
+  // Utilisation de useEffect pour récupérer les données des employés depuis le localStorage
   useEffect(() => {
-    const savedEmployees = JSON.parse(localStorage.getItem('employees')) || [];
-    setEmployees(savedEmployees);
-  }, []);
+    const savedEmployees = JSON.parse(localStorage.getItem('employees')) || []; // Récupération des employés stockés
+    setEmployees(savedEmployees); // Mise à jour de l'état avec les employés récupérés
+  }, []); // Le tableau vide [] signifie que cet effet s'exécute une seule fois après le montage du composant
 
+  // Fonction pour formater les dates au format jj/mm/aaaa
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  // Affiche un tableau avec la liste des employés et leurs info
   return (
     <div>
       <h2>Current Employees</h2>

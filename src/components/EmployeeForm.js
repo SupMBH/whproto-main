@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Modal from 'react-modal';
+import React, { useState } from 'react';  // Importation de React et du hook useState pour gérer l'état local
+import DatePicker from 'react-datepicker';  // Importation du composant de sélection de date
+import 'react-datepicker/dist/react-datepicker.css';  // Importation du fichier CSS pour le DatePicker
+import Modal from 'react-modal';  // Importation du composant Modal
 
-Modal.setAppElement('#root'); // Assurez-vous que cela est appelé une seule fois
+Modal.setAppElement('#root'); // Définit l'élément racine de l'application pour la modal (accessibilité et erreurs console)
 
+//Stockage des états le hook usestate va gerer les champs du formaulaire
 const EmployeeForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -70,6 +71,7 @@ const EmployeeForm = () => {
     { name: "Wyoming", abbreviation: "WY" }
   ];
 
+  // Fonction pour sauvegarder les données de l'employé en un objet dans localstorage et ouvrir la modale
   const saveEmployee = () => {
     const employee = {
       firstName,
