@@ -8,6 +8,11 @@ const EmployeeList = () => {
     setEmployees(savedEmployees);
   }, []);
 
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div>
       <h2>Current Employees</h2>
@@ -30,8 +35,8 @@ const EmployeeList = () => {
             <tr key={index}>
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
-              <td>{employee.dateOfBirth}</td>
-              <td>{employee.startDate}</td>
+              <td>{formatDate(employee.dateOfBirth)}</td>
+              <td>{formatDate(employee.startDate)}</td>
               <td>{employee.department}</td>
               <td>{employee.street}</td>
               <td>{employee.city}</td>
