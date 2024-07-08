@@ -112,9 +112,47 @@ tbody tr:hover {
   background-color: #f1faee;
 }
 
-.modal {
+.ReactModal__Overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.ReactModal__Content {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
+
+.ReactModal__Content h2 {
+  margin-bottom: 20px;
+}
+
+.ReactModal__Content button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #457b9d;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ReactModal__Content button:hover {
+  background-color: #1d3557;
+}
+

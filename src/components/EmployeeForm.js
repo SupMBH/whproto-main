@@ -3,6 +3,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Modal from 'react-modal';
 
+Modal.setAppElement('#root'); // Assurez-vous que cela est appelé une seule fois
+
 const EmployeeForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -104,13 +106,13 @@ const EmployeeForm = () => {
 
         <fieldset>
           <legend>Address</legend>
-          <label>Street     </label>
+          <label>Street</label>
           <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} />
 
-          <label>     City     </label>
+          <label>City</label>
           <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
 
-          <label>     State     </label>
+          <label>State</label>
           <select value={state} onChange={(e) => setState(e.target.value)}>
             {states.map((state) => (
               <option key={state.abbreviation} value={state.abbreviation}>
@@ -119,7 +121,7 @@ const EmployeeForm = () => {
             ))}
           </select>
 
-          <label>     Zip Code     </label>
+          <label>Zip Code</label>
           <input type="number" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
         </fieldset>
 
@@ -134,9 +136,16 @@ const EmployeeForm = () => {
       </form>
       <button onClick={saveEmployee}>Save</button>
 
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <h2>Employee Created!</h2>
-        <button onClick={() => setModalIsOpen(false)}>Close</button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        className="ReactModal__Content"
+        overlayClassName="ReactModal__Overlay"
+      >
+        <div className="modal-content">
+          <h2>Employee Created!</h2>
+          <button onClick={() => setModalIsOpen(false)}>Close</button>
+        </div>
       </Modal>
     </div>
   );
