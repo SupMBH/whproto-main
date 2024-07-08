@@ -12,7 +12,7 @@ function App() {
           <h1>Welcome to RHnet</h1>
           <nav>
             <Link to="/">Home</Link>
-            <Link to="/employees">View Current Employees</Link>
+            <Link to="/employees">Employees</Link>
           </nav>
         </header>
         <Routes>

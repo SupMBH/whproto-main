@@ -104,13 +104,13 @@ const EmployeeForm = () => {
 
         <fieldset>
           <legend>Address</legend>
-          <label>Street</label>
+          <label>Street     </label>
           <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} />
 
-          <label>City</label>
+          <label>     City     </label>
           <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
 
-          <label>State</label>
+          <label>     State     </label>
           <select value={state} onChange={(e) => setState(e.target.value)}>
             {states.map((state) => (
               <option key={state.abbreviation} value={state.abbreviation}>
@@ -119,7 +119,7 @@ const EmployeeForm = () => {
             ))}
           </select>
 
-          <label>Zip Code</label>
+          <label>     Zip Code     </label>
           <input type="number" value={zipCode} onChange={(e) => setZipCode(e.target.value)} />
         </fieldset>
 
