@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1>Welcome to WHproto</h1>
+          <h1>Welcome to RHnet</h1>
           <nav>
             <Link to="/">Home</Link>
             <Link to="/employees">View Current Employees</Link>

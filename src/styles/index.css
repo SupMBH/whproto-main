@@ -16,24 +16,27 @@ code {
 
 .App-header {
   background-color: #a8dadc;
-  min-height: 100vh;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: #1d3557;
 }
 
 nav {
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 100px; /* Ajuster la valeur pour plus d'espace */
 }
 
 nav a {
   color: #457b9d;
-  margin: 0 10px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.2em; /* Ajuster la taille de la police */
 }
 
 nav a:hover {
@@ -82,8 +85,8 @@ button:hover {
 }
 
 table {
-  width: 100%;
-  margin-top: 20px;
+  width: 80%;
+  margin: 20px auto;
   border-collapse: collapse;
 }
 
