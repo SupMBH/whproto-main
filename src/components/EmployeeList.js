@@ -1,3 +1,4 @@
+// (Concernant le pluggin JQuery pour les tables de données on se sert de HTML natif)
 import React, { useState, useEffect } from 'react'; // Importation de React et des hooks useState et useEffect pour recup données et effets de bord
 
 const EmployeeList = () => {
@@ -14,6 +15,7 @@ const EmployeeList = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  // Ici notre HTML natif rend les tables de données
   // Affiche un tableau avec la liste des employés et leurs info
   return (
     <div>

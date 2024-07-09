@@ -1,4 +1,4 @@
-// AVEC PLUGGIN REACT POUR LES MENUS DEROULANTS (concernant le pluggin JQuery pour les tables de données on se sert de HTML natif)
+// AVEC PLUGGIN REACT POUR LES MENUS DEROULANTS 
 import React, { useState } from 'react';  // Importation de React et du hook useState pour gérer l'état local
 import DatePicker from 'react-datepicker';  // Importation du composant de sélection de date
 import 'react-datepicker/dist/react-datepicker.css';  // Importation du fichier CSS pour le DatePicker
