@@ -79,31 +79,36 @@ const EmployeeList = () => {
       <h2>Current Employees</h2>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? ' 🔽'
-                        : ' 🔼'
-                      : ''}
-                  </span>
-                </th>
-              ))}
+          {headerGroups.map((headerGroup, headerGroupIndex) => (
+            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroupIndex}>
+              {headerGroup.headers.map((column) => {
+                const { key, ...rest } = column.getHeaderProps(column.getSortByToggleProps());
+                return (
+                  <th key={column.id} {...rest}>
+                    {column.render('Header')}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? ' 🔽'
+                          : ' 🔼'
+                        : ''}
+                    </span>
+                  </th>
+                );
+              })}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
+          {rows.map((row, rowIndex) => {
             prepareRow(row);
+            const { key, ...rest } = row.getRowProps();
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => (
-                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                ))}
+              <tr key={rowIndex} {...rest}>
+                {row.cells.map((cell) => {
+                  const { key, ...rest } = cell.getCellProps();
+                  return <td key={cell.column.id} {...rest}>{cell.render('Cell')}</td>;
+                })}
               </tr>
             );
           })}
