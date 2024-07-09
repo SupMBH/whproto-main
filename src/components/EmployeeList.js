@@ -15,7 +15,7 @@ const EmployeeList = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // Ici notre HTML natif rend les tables de données
+  // Ici notre HTML natif rend les tables de données au lieu de pluggin jQuery du programme initial
   // Affiche un tableau avec la liste des employés et leurs info
   return (
     <div>
