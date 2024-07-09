@@ -1,8 +1,9 @@
-// (Concernant le pluggin JQuery pour les tables de données on se sert de HTML natif)
-import React, { useState, useEffect } from 'react'; // Importation de React et des hooks useState et useEffect pour recup données et effets de bord
+import React, { useState, useEffect, useMemo } from 'react'; // Importation de React et des hooks useState et useEffect pour recup données et effets de bord
+import { useTable, useSortBy } from 'react-table'; // Importation des hooks de react-table pour gérer les tableaux triables
 
 const EmployeeList = () => {
   const [employees, setEmployees] = useState([]); // État pour stocker la liste des employés
+
   // Utilisation de useEffect pour récupérer les données des employés depuis le localStorage
   useEffect(() => {
     const savedEmployees = JSON.parse(localStorage.getItem('employees')) || []; // Récupération des employés stockés
@@ -15,39 +16,97 @@ const EmployeeList = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // Ici notre HTML natif rend les tables de données au lieu de pluggin jQuery du programme initial
+  // Définition des colonnes pour react-table
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'First Name',
+        accessor: 'firstName'
+      },
+      {
+        Header: 'Last Name',
+        accessor: 'lastName'
+      },
+      {
+        Header: 'Date of Birth',
+        accessor: 'dateOfBirth',
+        Cell: ({ value }) => formatDate(value) // Formate les dates
+      },
+      {
+        Header: 'Start Date',
+        accessor: 'startDate',
+        Cell: ({ value }) => formatDate(value) // Formate les dates
+      },
+      {
+        Header: 'Department',
+        accessor: 'department'
+      },
+      {
+        Header: 'Street',
+        accessor: 'street'
+      },
+      {
+        Header: 'City',
+        accessor: 'city'
+      },
+      {
+        Header: 'State',
+        accessor: 'state'
+      },
+      {
+        Header: 'Zip Code',
+        accessor: 'zipCode'
+      }
+    ],
+    []
+  );
+
+  // Utilisation de react-table
+  const tableInstance = useTable({ columns, data: employees }, useSortBy);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow
+  } = tableInstance;
+
+  // Ici notre HTML natif rend les tables de données au lieu du plugin jQuery du programme initial
   // Affiche un tableau avec la liste des employés et leurs infos
   return (
     <div>
       <h2>Current Employees</h2>
-      <table>
+      <table {...getTableProps()}>
         <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Start Date</th>
-            <th>Department</th>
-            <th>Street</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip Code</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee, index) => (
-            <tr key={index}>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
-              <td>{formatDate(employee.dateOfBirth)}</td>
-              <td>{formatDate(employee.startDate)}</td>
-              <td>{employee.department}</td>
-              <td>{employee.street}</td>
-              <td>{employee.city}</td>
-              <td>{employee.state}</td>
-              <td>{employee.zipCode}</td>
+          {headerGroups.map(headerGroup => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  {column.render('Header')}
+                  <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
+                </th>
+              ))}
             </tr>
           ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {rows.map(row => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map(cell => (
+                  <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
