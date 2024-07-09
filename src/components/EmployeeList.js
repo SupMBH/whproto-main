@@ -16,7 +16,7 @@ const EmployeeList = () => {
   };
 
   // Ici notre HTML natif rend les tables de données au lieu de pluggin jQuery du programme initial
-  // Affiche un tableau avec la liste des employés et leurs info
+  // Affiche un tableau avec la liste des employés et leurs infos
   return (
     <div>
       <h2>Current Employees</h2>
