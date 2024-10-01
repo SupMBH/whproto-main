@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import EmployeeListPage from './pages/EmployeeListPage';
 import EmployeeFormPage from './pages/EmployeeFormPage';
+import NotFoundPage from './pages/NotFoundPage';
 import './styles/index.css';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
           <Route exact path="/home" element={<EmployeeFormPage />} />
           <Route path="/employees" element={<EmployeeListPage />} />
           {/* Gestion des erreurs */}
-          <Route path="*" element={<EmployeeFormPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </Router>
