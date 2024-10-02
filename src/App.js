@@ -12,12 +12,12 @@ function App() {
         <header className="App-header">
           <h1>Welcome to HRNet</h1>
           <nav>
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/employees">Employees</Link>
           </nav>
         </header>
         <Routes>
-          <Route exact path="/home" element={<EmployeeFormPage />} />
+          <Route exact path="/" element={<EmployeeFormPage />} />
           <Route path="/employees" element={<EmployeeListPage />} />
           {/* Gestion des erreurs */}
           <Route path="*" element={<NotFoundPage />} />
