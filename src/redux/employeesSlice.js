@@ -11,7 +11,7 @@ const employeesSlice = createSlice({
   reducers: {
     addEmployee: (state, action) => {
       state.list.push(action.payload);
-      //Option Courtcicuitage vers LocalStorage pour shunter (même après modif des composants EmployeeForm & EmployeeList) 
+      //Option Courtcicuitage vers LocalStorage pour shunter (même après modif des composants EmployeeForm & EmployeeList en cas de test avec rechargement de page) 
       //localStorage.setItem('employees', JSON.stringify(state.list));
     },
   },
