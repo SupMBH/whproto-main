@@ -1,14 +1,20 @@
-import React, { useState, useEffect, useMemo } from 'react'; // Importation de React et des hooks useState et useEffect pour recup données et effets de bord
+import React, { useMemo } from 'react'; // Importation de React et des hooks useState et useEffect pour recup données et effets de bord
 import { useTable, useSortBy } from 'react-table'; // Importation des hooks de react-table pour gérer les tableaux triables
+import { useSelector } from 'react-redux'; // Importation du hook Redux pour accéder au store
 
 const EmployeeList = () => {
+  // Version Redux
+  const employees = useSelector((state) => state.employees.list);
+  // Version récupération depuis le LocalStorage
+  /*
   const [employees, setEmployees] = useState([]); // État pour stocker la liste des employés
-
   // Utilisation de useEffect pour récupérer les données des employés depuis le localStorage
+  import React, { useState, useEffect } from 'react';
   useEffect(() => {
     const savedEmployees = JSON.parse(localStorage.getItem('employees')) || []; // Récupération des employés stockés
     setEmployees(savedEmployees); // Mise à jour de l'état avec les employés récupérés
   }, []); // Le tableau vide [] signifie que cet effet s'exécute une seule fois après le montage du composant
+  */
 
   // Fonction pour formater les dates au format jj/mm/aaaa
   const formatDate = (dateString) => {
@@ -89,9 +95,9 @@ const EmployeeList = () => {
                     <span>
                       {column.isSorted
                         ? column.isSortedDesc
-                          ? ' 🔽'
-                          : ' 🔼'
-                        : ''}
+                          ? ' ▼'
+                          : ' ▲'
+                        : ' ◆'} {/* Flèche générique pour montrer que le tri est possible */}
                     </span>
                   </th>
                 );

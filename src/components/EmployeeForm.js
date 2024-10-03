@@ -4,6 +4,9 @@ import 'react-datepicker/dist/react-datepicker.css';  // Importation du fichier 
 import Modal from 'react-modal';  // Importation du composant Modal
 import Dropdown from './Dropdown.js'; // On importe ici le composant REACT crée pour le projet
 
+import { useDispatch } from 'react-redux'; // Redux
+import { addEmployee } from '../redux/employeesSlice'; // Redux - action pour ajouter un employé
+
 Modal.setAppElement('#root'); // Définit l'élément racine de l'application pour la modal (accessibilité et erreurs console)
 
 //Stockage des états le hook usestate va gerer les champs du formaulaire
@@ -18,6 +21,8 @@ const EmployeeForm = () => {
   const [state, setState] = useState('AL');
   const [zipCode, setZipCode] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  
+  const dispatch = useDispatch(); // Utilisation de useDispatch pour envoyer des actions Redux
 
   const states = [
     { label: "Alabama", value: "AL" },
@@ -85,17 +90,22 @@ const EmployeeForm = () => {
     const employee = {
       firstName,
       lastName,
-      dateOfBirth,
-      startDate,
+      dateOfBirth: dateOfBirth.toISOString(), // Convertir en chaîne de caractères car la valeur est de base non serialisable dans redux et on a une erreur console
+      startDate: startDate.toISOString(),      // idem
       department,
       street,
       city,
       state,
       zipCode,
     };
+    //Dispatch Redux
+    dispatch(addEmployee(employee)); // Envoi de l'action Redux pour ajouter un employé
+    //Envoi vers local Storage
+    /*
     const employees = JSON.parse(localStorage.getItem('employees')) || [];
     employees.push(employee);
     localStorage.setItem('employees', JSON.stringify(employees));
+    */
     setModalIsOpen(true);
   };
 
